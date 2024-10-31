@@ -66,19 +66,10 @@ public class SequenceHandler {
 			/***********************************************************************
 			 * The code here defines the main sequence of events in the experiment *
 			 **********************************************************************/
-			//case 1:
-				//String startdata = TimeStamp.Now() + ",";
-				//startdata = startdata + SessionInfo.participantID;
-				
-				//PHP.logData("start", startdata, true);
-				//break;
 			case 1:
-				ClickPage.Run(Instructions.Get(0), "Next");
-				break;
-			case 2:
 				ClickPage.Run(Instructions.Get(1), "Next");
 				break;				
-			case 3:
+			case 2:
 				IOtask2Block block1 = new IOtask2Block();
 				
 				block1.totalCircles = 10;
@@ -88,10 +79,10 @@ public class SequenceHandler {
 				
 				block1.Run();
 				break;
-			case 4:
+			case 3:
 				ClickPage.Run(Instructions.Get(2), "Next");
 				break;
-			case 5:
+			case 4:
 				IOtask2Block block2 = new IOtask2Block();
 				
 				block2.totalCircles = 10;
@@ -102,10 +93,10 @@ public class SequenceHandler {
 				
 				block2.Run();
 				break;
-			case 6:
+			case 5:
 				ClickPage.Run(Instructions.Get(3), "Next");
 				break;
-			case 7:
+			case 6:
 				IOtask2Block block3 = new IOtask2Block();
 				
 				block3.nTargets = Params.nTargets;
@@ -116,16 +107,16 @@ public class SequenceHandler {
 				
 				block3.Run();
 				break;
-			case 8:
+			case 7:
 				Slider.Run(Instructions.Get(4), "0%", "100%");
 				break;
-			case 9:
+			case 8:
 				PHP.logData("slider1", ""+Slider.getSliderValue(), true);
 				break;
-			case 10:
+			case 9:
 				ClickPage.Run(Instructions.Get(5), "Next");
 				break;
-			case 11:
+			case 10:
 				IOtask2Block block4 = new IOtask2Block();
 				
 				block4.nTargets = Params.nTargets;
@@ -136,16 +127,16 @@ public class SequenceHandler {
 				
 				block4.Run();
 				break;	
-			case 12:
+			case 11:
 				ClickPage.Run(Instructions.Get(6), "Next");
 				break;
-			case 13:
+			case 12:
 				ClickPage.Run(Instructions.Get(61), "Next");
 				break;
-			case 14:
+			case 13:
 				ClickPage.Run(Instructions.Get(62), "Next");
 				break;
-			case 15:
+			case 14:
 				IOtask2Block block5 = new IOtask2Block();
 				
 				block5.nTargets = Params.nTargets;
@@ -156,10 +147,10 @@ public class SequenceHandler {
 				
 				block5.Run();
 				break;				
-			case 16:
+			case 15:
 				ClickPage.Run(Instructions.Get(7), "Next");
 				break;
-			case 17:
+			case 16:
 				IOtask2Block block6 = new IOtask2Block();
 				
 				block6.nTargets = Params.nTargets;
@@ -170,10 +161,10 @@ public class SequenceHandler {
 				
 				block6.Run();
 				break;	
-			case 18:
+			case 17:
 				ClickPage.Run(Instructions.Get(8), "Next");
 				break;	
-			case 19:
+			case 18:
 				ProgressBar.Initialise();
 				ProgressBar.Show();
 				ProgressBar.SetProgress(0, 16);
@@ -188,10 +179,11 @@ public class SequenceHandler {
 				block7.countdownTimer = true;
 				block7.blockNum = 7;
 				block7.logDragData = true;
+				block7.highEffort = 5;
 				
 				block7.Run();
 				break;
-			case 20:
+			case 19:
 				ProgressBar.Hide();
 				
 				// log data and check that it saves
@@ -204,7 +196,7 @@ public class SequenceHandler {
 				PHP.UpdateStatus("finished");
 				PHP.logData("finish", data, true);
 				break;
-			case 21:
+			case 20:
 				ClickPage.Run(Instructions.Get(10), "nobutton");
 				break;
 			}

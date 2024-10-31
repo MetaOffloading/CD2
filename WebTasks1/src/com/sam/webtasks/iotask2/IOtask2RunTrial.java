@@ -43,6 +43,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.sam.webtasks.basictools.Names;
 import com.sam.webtasks.basictools.PHP;
 import com.sam.webtasks.basictools.ProgressBar;
+import com.sam.webtasks.client.ExtraNames;
 import com.sam.webtasks.client.Params;
 import com.sam.webtasks.client.SequenceHandler;
 import com.sam.webtasks.iotask1.IOtask1BlockContext;
@@ -494,6 +495,37 @@ public class IOtask2RunTrial {
 				@Override
 				public void onNodeDragEnd(NodeDragEndEvent event) {
 					final int clickedCircle = IOtask2BlockContext.getClickedCircle();
+					final int thisCircle = Integer.parseInt(circleText[clickedCircle].getText());
+					
+					boolean isTarget = false;
+					
+					if (IOtask2BlockContext.getTargetSide(thisCircle-1) > 0) {
+						isTarget = true;
+					}
+
+					if (IOtask2BlockContext.getHighEffort()>0) {
+						if (clickedCircle != IOtask2BlockContext.getNextCircle()) {
+							int nClicks = IOtask2BlockContext.getHighEffort();
+							
+							/*
+							if (ExtraNames.alreadyClicked) {
+								nClicks = 0;
+							} */
+							
+							while (nClicks > 0) {
+								String message = "Click " + nClicks + " times.";
+
+								if (nClicks-- == 1) {
+									message = "Click once.";
+								}
+
+								if (isTarget) {
+									Window.alert(message);
+									//ExtraNames.alreadyClicked = true;
+								}
+							}
+						}
+					}
 
 					if (IOtask2BlockContext.getLogDragData()) {
 						int circleNum = clickedCircle + IOtask2BlockContext.getCircleAdjust();

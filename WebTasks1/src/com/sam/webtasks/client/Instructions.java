@@ -10,25 +10,8 @@ public class Instructions {
 		String i="";
 		 
 		switch(index) {
-		case 0:
-            i = "You will now complete <b>a web-based task</b> before returning to the survey. You may "
-                    + "only participate in this experiment if you have completed the  "
-                    + "first survey. You will not receive any compensation otherwise."
-                    + "<br><br>Please close any programs "
-                    + "that could cause distraction (e.g. email clients) and "
-                    + "maximise the size of this window.<br><br>This experiment will take "
-                    + "approximately 20 minutes. Please only continue when you think "
-                    + "you will be free from distractions for the next 20 minutes. When you have "
-                    + "completed this task, you will be redirected back to the survey to answer "
-                    + "some further questions.<br><br>"
-                    + "<br><br>You may withdraw at any time without penalty, simply by "
-                    + "closing your browser window. If you are having difficulty "
-                    + "running the experiment we recommend that you try using Google "
-                    + "Chrome. Unfortunately, the experiment may not be compatible with all "
-                    + "systems and we apologise if you are not able to take part.";
-            break;
         case 1:
-        	i="In this part of the experiment you will have a simple task to do.<br><br>"
+        	i="In this experiment you have a simple task to do.<br><br>"
                     + "You will see </b>several yellow circles</b> inside a box. "
                     + "Inside each circle will be a number. <br><br>"
                     + "You can move them around using your mouse, or drag them with your finger if "
@@ -82,8 +65,8 @@ public class Instructions {
             break;
         case 6:
         	i = "From now on, you will score points every time you drag one of the special circles "  
-					+ "to the correct border.<br><br>You should try to score as many points as you can.<br><br>"
-					+ "The top 50% of participants will receive an additional bonus payment of £0.50.<br><br>";
+					+ "to the correct border.<br><br>You should try to score as many points as you can.<br><br>";
+			//i = i + "The top 50% of participants will receive an additional bonus payment of £0.50.<br><br>";
         	break;
         case 61:
         	i = "Each time you do the task, you will have a choice between two options. One option will be to "
@@ -105,9 +88,9 @@ public class Instructions {
         			+ "If you use reminders, the exact number of points you can win for each special circle will vary, "
         			+ "but it will always be less than 10. You will always be told exactly "
         			+ "how many points the special circles are worth, before you make your choice.<br><br>"
-        			+ "Please make your decisions carefully to make sure you score as many points as possible. This "
-        			+ "will give you the best chance to earn the additional £0.50 bonus payment.<br><br>"
-        			+ "Click below for some more practice.";
+        			+ "Please make your decisions carefully to make sure you score as many points as possible.";
+        	//i = i + " This will give you the best chance to earn the additional £0.50 bonus payment";
+        	i = i + "<br><br>Click below for some more practice.";
         	break;
         case 7:
         	i = "There is one last element to this task, which is that on a random number of blocks, "
@@ -129,18 +112,12 @@ public class Instructions {
                     + "circles appear. This is not a bug, but intended to speed things up a little.<br><br>"
                     + "You can start the main experiment when you are ready.";
             break;
-        case 9:
-			i = "You have now completed the experimental blocks, thank you. "
-					+ "In the last part, we ask you to complete a "
-					+ "brief questionnaire.<br><br>"
-					+ "Please start the questionnaire when you are ready.";
-			break;
         case 10:
-			i = "You have now completed the experiment."
-					+ "Please click on the link below to return to the survey and complete the first session:<br><br>"
-					+ "<b><a href=\"https://uclpsych.eu.qualtrics.com/jfe/form/SV_dojGwYhhWyflvrE?PROLIFIC_PID=" 
- 					+ SessionInfo.participantID + "\">"
- 					+ "CLICK HERE</a></b>";
+			i = "You have now completed the experiment.<br><br>"
+					+ "<b>***IMPORTANT:***</b><br><br>"
+					+ "Credit Code: 704Q<br><br>" 
+ 					+ "You must write this code down! After doing so, please return to the original "
+ 					+ "QuestionPro survey page and enter the code at the bottom. If you do not do this, you will not receive credit!";
 			break;
 		}
 

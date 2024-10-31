@@ -57,7 +57,7 @@ public class Initialise {
 			SessionInfo.participantID = Window.Location.getParameter("PROLIFIC_PID");
 			
 			if (SessionInfo.participantID == null) {
-				SessionInfo.participantID = Window.prompt("What is your Prolific ID?",  "");
+				SessionInfo.participantID = Window.prompt("Please enter your SONA ID number",  "");
 			}
 			
 			if (SessionInfo.sessionKey == null) {
