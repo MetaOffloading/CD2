@@ -124,6 +124,7 @@ public class SequenceHandler {
 				block4.offloadCondition = Names.REMINDERS_MANDATORY_TARGETONLY;
 				block4.blockNum = 4;
 				block4.logDragData = true;
+				block4.highEffort = 3;
 				
 				block4.Run();
 				break;	
@@ -144,6 +145,7 @@ public class SequenceHandler {
 				block5.targetValues.add(1);
 				block5.blockNum = 5;
 				block5.logDragData = true;
+				block5.highEffort = 3;
 				
 				block5.Run();
 				break;				
@@ -158,6 +160,7 @@ public class SequenceHandler {
 				block6.standard24blockprac = true;
 				block6.blockNum = 6;
 				block6.logDragData = true;
+				block6.highEffort = 3;
 				
 				block6.Run();
 				break;	
@@ -179,7 +182,7 @@ public class SequenceHandler {
 				block7.countdownTimer = true;
 				block7.blockNum = 7;
 				block7.logDragData = true;
-				block7.highEffort = 5;
+				block7.highEffort = 3;
 				
 				block7.Run();
 				break;
