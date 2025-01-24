@@ -67,6 +67,10 @@ public class SequenceHandler {
 			 * The code here defines the main sequence of events in the experiment *
 			 **********************************************************************/
 			case 1:
+				if (Counterbalance.getFactorLevel("effortCondition")==0) {
+					Params.effortClicks=0;
+				}
+				
 				ClickPage.Run(Instructions.Get(1), "Next");
 				break;				
 			case 2:
@@ -124,7 +128,8 @@ public class SequenceHandler {
 				block4.offloadCondition = Names.REMINDERS_MANDATORY_TARGETONLY;
 				block4.blockNum = 4;
 				block4.logDragData = true;
-				block4.highEffort = 3;
+				
+				block4.highEffort = Params.effortClicks;
 				
 				block4.Run();
 				break;	
@@ -145,7 +150,7 @@ public class SequenceHandler {
 				block5.targetValues.add(1);
 				block5.blockNum = 5;
 				block5.logDragData = true;
-				block5.highEffort = 3;
+				block5.highEffort = Params.effortClicks;
 				
 				block5.Run();
 				break;				
@@ -160,7 +165,7 @@ public class SequenceHandler {
 				block6.standard24blockprac = true;
 				block6.blockNum = 6;
 				block6.logDragData = true;
-				block6.highEffort = 3;
+				block6.highEffort = Params.effortClicks;
 				
 				block6.Run();
 				break;	
@@ -182,7 +187,7 @@ public class SequenceHandler {
 				block7.countdownTimer = true;
 				block7.blockNum = 7;
 				block7.logDragData = true;
-				block7.highEffort = 3;
+				block7.highEffort = Params.effortClicks;
 				
 				block7.Run();
 				break;
@@ -194,6 +199,7 @@ public class SequenceHandler {
 				data = data + SessionInfo.participantID + ",";
 				data = data + SessionInfo.gender + ",";
 				data = data + SessionInfo.age + ",";
+				data = data + Params.effortClicks + ",";
 				data = data + Counterbalance.getCounterbalancingCell();
 
 				PHP.UpdateStatus("finished");

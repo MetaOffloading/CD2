@@ -15,4 +15,6 @@ public class Params {
 	public final static int initialPoints=600;
 	
 	public final static int nTargets = 6;
+	
+	public static int effortClicks = 3;
 }
