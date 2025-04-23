@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteFormatter.BlockContext;
+
 import com.ait.lienzo.client.core.animation.AnimationProperties;
 import com.ait.lienzo.client.core.animation.AnimationTweener;
 import com.ait.lienzo.client.core.animation.IAnimation;
@@ -306,6 +308,7 @@ public class IOtask2RunTrial {
 				@Override
 				
 				public void onNodeDragStart(NodeDragStartEvent event) {		
+					//Window.alert("reminder: " + IOtask2BlockContext.getReminderFlag() + ", backup: " + IOtask2BlockContext.getBackupReminderFlag());
 					// reset the double click flag. this is used to quit the task
 					// using a double click to the first circle followed by
 					// a double click to the last circle
@@ -346,10 +349,10 @@ public class IOtask2RunTrial {
 						IOtask2BlockContext.setReminderFlag(-1);
 
 						if (IOtask2BlockContext.getReminderFlag() == IOtask2BlockContext.getBackupReminderFlag()) {
-							IOtask2BlockContext.setBackupReminderFlag(-1);
+							//IOtask2BlockContext.setBackupReminderFlag(-1);
 						}
 					} else if (clickedCircle == IOtask2BlockContext.getBackupReminderFlag()) {
-						IOtask2BlockContext.setBackupReminderFlag(-1);
+						//IOtask2BlockContext.setBackupReminderFlag(-1);
 					}
 
 					if (event.getX() <= 0) { // left
@@ -388,14 +391,13 @@ public class IOtask2RunTrial {
 							if ((clickedCircle == IOtask2BlockContext.getNextCircle())
 									&& ((IOtask2BlockContext.getReminderFlag() == -1)
 											|| ((IOtask2BlockContext.getCompletedCircles()
-													- IOtask2BlockContext.getReminderCompletedCircles()) < 1))) {
+													- IOtask2BlockContext.getReminderCompletedCircles()) < -1))) {
 
 								if (IOtask2BlockContext.getCheckExitFlag() == 1) {
-									IOtask2BlockContext.setReminderFlag(IOtask2BlockContext.getBackupReminderFlag());
+									//IOtask2BlockContext.setReminderFlag(IOtask2BlockContext.getBackupReminderFlag());
 
-									IOtask2BlockContext.setReminderCompletedCircles(
-											IOtask2BlockContext.getBackupCompletedCircles());
-									IOtask2BlockContext.setBackupReminderFlag(-1);
+									//IOtask2BlockContext.setReminderCompletedCircles(IOtask2BlockContext.getBackupCompletedCircles());
+									//IOtask2BlockContext.setBackupReminderFlag(-1);
 									IOtask2BlockContext.setCheckExitFlag(0);
 
 									int circleNum = clickedCircle + IOtask2BlockContext.getCircleAdjust();
@@ -655,9 +657,9 @@ public class IOtask2RunTrial {
 
 							if (IOtask2BlockContext.getTargetSide(newCircle) > 0) { // new circle is a target
 								if (IOtask2BlockContext.getOffloadCondition() == Names.REMINDERS_MANDATORY_TARGETONLY) {
-									IOtask2BlockContext.setBackupReminderFlag(clickedCircle);
-									IOtask2BlockContext
-											.setBackupCompletedCircles(IOtask2BlockContext.getCompletedCircles());
+									//IOtask2BlockContext.setBackupReminderFlag(clickedCircle);
+									IOtask2BlockContext.setReminderFlag(clickedCircle);
+									//IOtask2BlockContext.setBackupCompletedCircles(IOtask2BlockContext.getCompletedCircles());
 
 									if ((IOtask2BlockContext.getCompletedCircles()
 											- IOtask2BlockContext.getReminderCompletedCircles()) > 1) {
