@@ -18,8 +18,12 @@ import com.ait.lienzo.client.core.event.NodeDragMoveEvent;
 import com.ait.lienzo.client.core.event.NodeDragMoveHandler;
 import com.ait.lienzo.client.core.event.NodeDragStartEvent;
 import com.ait.lienzo.client.core.event.NodeDragStartHandler;
+import com.ait.lienzo.client.core.event.NodeMouseClickEvent;
+import com.ait.lienzo.client.core.event.NodeMouseClickHandler;
 import com.ait.lienzo.client.core.event.NodeMouseDoubleClickEvent;
 import com.ait.lienzo.client.core.event.NodeMouseDoubleClickHandler;
+import com.ait.lienzo.client.core.event.NodeMouseDownEvent;
+import com.ait.lienzo.client.core.event.NodeMouseDownHandler;
 import com.ait.lienzo.client.core.shape.Circle;
 import com.ait.lienzo.client.core.shape.Group;
 import com.ait.lienzo.client.core.shape.Layer;
@@ -303,7 +307,19 @@ public class IOtask2RunTrial {
 
 			final int finalc = c; // need to set up a final version of the c variable so that it works in the code
 									// below
-
+			
+			circleGroup[c].addNodeMouseDownHandler(new NodeMouseDownHandler() {
+				@Override
+				public void onNodeMouseDown(NodeMouseDownEvent event) {
+					if(!circleGroup[finalc].isDraggable()) {
+						if(IOtask2BlockContext.getOffloadCondition()==Names.REMINDERS_MANDATORY_TARGETONLY) {
+							Window.alert("You need to set a reminder for circle number " +
+					                 circleText[IOtask2BlockContext.getReminderFlag()].getText());
+						}
+					}	
+				}			
+			});
+			
 			circleGroup[c].addNodeDragStartHandler(new NodeDragStartHandler() {		
 				@Override
 				
@@ -323,7 +339,7 @@ public class IOtask2RunTrial {
 
 					// store identity of the clicked circle
 					IOtask2BlockContext.setClickedCircle(finalc);
-					
+
 					DragContext dC = event.getDragContext();
 					
 					/*
@@ -348,6 +364,12 @@ public class IOtask2RunTrial {
 					if (clickedCircle == IOtask2BlockContext.getReminderFlag()) {
 						IOtask2BlockContext.setReminderFlag(-1);
 
+						if(IOtask2BlockContext.getOffloadCondition() == Names.REMINDERS_MANDATORY_TARGETONLY) {
+							for (int c = 0; c < IOtask2BlockContext.getnCircles(); c++) {
+								circleGroup[c].setDraggable(true);
+							}
+						}
+						
 						if (IOtask2BlockContext.getReminderFlag() == IOtask2BlockContext.getBackupReminderFlag()) {
 							//IOtask2BlockContext.setBackupReminderFlag(-1);
 						}
@@ -659,6 +681,13 @@ public class IOtask2RunTrial {
 								if (IOtask2BlockContext.getOffloadCondition() == Names.REMINDERS_MANDATORY_TARGETONLY) {
 									//IOtask2BlockContext.setBackupReminderFlag(clickedCircle);
 									IOtask2BlockContext.setReminderFlag(clickedCircle);
+									
+									for (int c = 0; c < IOtask2BlockContext.getnCircles(); c++) {
+										circleGroup[c].setDraggable(false);
+									}
+
+									circleGroup[clickedCircle].setDraggable(true);
+									
 									//IOtask2BlockContext.setBackupCompletedCircles(IOtask2BlockContext.getCompletedCircles());
 
 									if ((IOtask2BlockContext.getCompletedCircles()
@@ -891,7 +920,10 @@ public class IOtask2RunTrial {
 							}.schedule(500);
 						} else {
 							if (IOtask2BlockContext.getNextCircle() < IOtask2BlockContext.getnCircles()) {
-								circleGroup[IOtask2BlockContext.getNextCircle()].setDraggable(true);
+								
+								if(IOtask2BlockContext.getReminderFlag() != clickedCircle) {								
+									circleGroup[IOtask2BlockContext.getNextCircle()].setDraggable(true);
+								}
 							}
 						}
 					}

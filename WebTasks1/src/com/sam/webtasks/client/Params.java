@@ -14,7 +14,7 @@ public class Params {
 	public final static String basePayment="$2";
 	public final static int initialPoints=600;
 	
-	public final static int nTargets = 6;
+	public final static int nTargets = 5;
 	
 	public static int effortClicks = 3;
 }
